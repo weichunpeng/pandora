@@ -57,7 +57,10 @@ export class TraceManager {
     return this.traceContainer[traceId];
   }
 
-  create(options) {
+  create(options: {
+    traceId?,
+    ns?
+  } = {}) {
     options.traceId = options.traceId || uuid();
     const traceId = options.traceId;
     this.ns.set(TRACEID, traceId);
@@ -82,7 +85,7 @@ export class TraceManager {
     return this.ns.bind(fn, context);
   }
 
-  run(fn, context) {
+  run(fn, context?) {
     return this.ns.run(fn, context);
   }
 
